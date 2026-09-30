@@ -427,21 +427,7 @@
       // ---- Mouse Parallax Effect ----
       let mouseX = 0;
       let mouseY = 0;
-      let currentX = 0;
-      let currentY = 0;
-
-      // Track mouse position relative to viewport center
-      hero.addEventListener('mousemove', (e) => {
-        const rect = hero.getBoundingClientRect();
-        mouseX = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
-        mouseY = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
-      });
-
-      // Reset when mouse leaves
-      hero.addEventListener('mouseleave', () => {
-        mouseX = 0;
-        mouseY = 0;
-      });
+ 
 
         requestAnimationFrame(animate);
       }
