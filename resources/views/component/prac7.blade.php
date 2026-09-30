@@ -443,30 +443,10 @@
         mouseY = 0;
       });
 
-      // Smooth animation loop using lerp
-      function animate() {
-        currentX += (mouseX - currentX) * 0.08;
-        currentY += (mouseY - currentY) * 0.08;
-
-        layers.forEach((layer) => {
-          const depth = parseFloat(layer.dataset.depth) || 0.05;
-          const moveX = currentX * depth * 400;
-          const moveY = currentY * depth * 400;
-          layer.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
-        });
-
         requestAnimationFrame(animate);
       }
 
       animate();
-
-      // ---- Touch support for mobile ----
-      hero.addEventListener('touchmove', (e) => {
-        const touch = e.touches[0];
-        const rect = hero.getBoundingClientRect();
-        mouseX = ((touch.clientX - rect.left) / rect.width - 0.5) * 2;
-        mouseY = ((touch.clientY - rect.top) / rect.height - 0.5) * 2;
-      }, { passive: true });
 
       hero.addEventListener('touchend', () => {
         mouseX = 0;
