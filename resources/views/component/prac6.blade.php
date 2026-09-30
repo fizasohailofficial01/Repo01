@@ -429,26 +429,7 @@
   var navDots      = document.querySelectorAll('.acct-hero .nav-dot');
   var slideCaption = document.getElementById('acctCaption');
 
-  if (!slider || slides.length === 0) {
-    console.warn('[acct-hero] slider elements not found — script skipped.');
-    return;
-  }
-
-  var slideData = [
-    { tag: 'Planning',   title: 'Financial Strategy', text: 'Build a solid financial roadmap for sustainable growth.' },
-    { tag: 'Analysis',   title: 'Data & Insights',    text: 'Turn complex numbers into clear, actionable insights.' },
-    { tag: 'Advisory',   title: 'Client Meetings',    text: 'Collaborate closely to align finances with your goals.' },
-    { tag: 'Compliance', title: 'Audit & Assurance',  text: 'Stay compliant with accurate reporting and audits.' }
-  ];
-
-  var totalSlides  = slides.length;
-  var AUTO_DELAY   = 4000;   // 4 seconds — change this to make it faster/slower
-  var currentSlide = 0;
-
-  function goToSlide(index) {
-    currentSlide = ((index % totalSlides) + totalSlides) % totalSlides;
-
-    slider.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
+ 
 
     
 

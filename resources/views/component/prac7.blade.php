@@ -399,15 +399,7 @@
       </div>
     </div>
 
-    <!-- ===== PARALLAX LAYER 3 (fastest – foreground) ===== -->
-    <div class="layer" data-depth="0.09">
-      <div class="float-card card-3">
-        <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=700&h=500&fit=crop" alt="Business meeting">
-      </div>
-      <div class="float-card card-4">
-        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=440&fit=crop" alt="Audit and compliance">
-      </div>
-    </div>
+   
 
     <!-- ===== CENTER CONTENT – in the clear middle zone ===== -->
     <div class="hero-content">
