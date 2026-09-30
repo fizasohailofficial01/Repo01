@@ -450,28 +450,5 @@
 
     slider.style.transform = 'translateX(-' + (currentSlide * 100) + '%)';
 
-    for (var i = 0; i < slides.length; i++) {
-      slides[i].classList.toggle('active', i === currentSlide);
-    }
-    for (var j = 0; j < navDots.length; j++) {
-      navDots[j].classList.toggle('active', j === currentSlide);
-    }
+    
 
-    var data = slideData[currentSlide];
-    if (slideCaption && data) {
-      slideCaption.style.opacity   = '0';
-      slideCaption.style.transform = 'translateY(10px)';
-
-      clearTimeout(goToSlide._t);
-      goToSlide._t = setTimeout(function () {
-        var tagEl   = slideCaption.querySelector('.tag');
-        var titleEl = slideCaption.querySelector('.caption-title');
-        var textEl  = slideCaption.querySelector('.caption-text');
-        if (tagEl)   tagEl.textContent   = data.tag;
-        if (titleEl) titleEl.textContent = data.title;
-        if (textEl)  textEl.textContent  = data.text;
-
-        slideCaption.style.opacity   = '1';
-        slideCaption.style.transform = 'translateY(0)';
-      }, 300);
-    }
