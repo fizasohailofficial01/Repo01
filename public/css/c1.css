@@ -1,0 +1,41 @@
+.accounting-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+    gap: 40px;
+}
+
+
+.image-box img {
+    width: 450px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+
+.text-box {
+    width: 50%;
+}
+
+
+.text-box h1 {
+    font-size: 35px;
+    color: #1e293b;
+}
+
+
+.text-box p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+
+.text-box button {
+    background: #1e293b;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+}
