@@ -517,9 +517,9 @@
 
         {{-- HEADING --}}
         <div class="why-us__head" data-animate>
-            <div class="why-us__badge">Why Choose Us</div>
+            <div class="why-us__badge">Why Choose Us?</div>
             <h2>Built for teams that <span>value their time</span></h2>
-            <p>Here's why thousands of businesses trust our accounting platform every day.</p>
+            <p>Here is why thousands of businesses trust our accounting platform every day.</p>
         </div>
 
         {{-- TIMELINE --}}
