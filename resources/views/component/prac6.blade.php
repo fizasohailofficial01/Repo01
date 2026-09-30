@@ -475,16 +475,3 @@
         slideCaption.style.transform = 'translateY(0)';
       }, 300);
     }
-  }
-
-  // ═══════════════════════════════════════════════
-  //  AUTOMATIC SLIDING — the only thing that matters
-  // ═══════════════════════════════════════════════
-  goToSlide(0);
-
-  setInterval(function () {
-    goToSlide(currentSlide + 1);
-  }, AUTO_DELAY);
-
-})();
-</script>
