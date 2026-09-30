@@ -569,10 +569,10 @@
                     </svg>
                 </div>
                 <div class="why-tl-content">
-                    <h3>Bank-Level Security</h3>
+                    <h3>Bank Level Security</h3>
                     <p>
                         Your financial data is protected by 256-bit encryption, SOC 2
-                        compliance, and daily encrypted backups — every single day.
+                        compliance, and daily encrypted backups, every single day.
                     </p>
                     <div class="why-tl-tags">
                         <span class="why-tl-tag">SOC 2</span>
