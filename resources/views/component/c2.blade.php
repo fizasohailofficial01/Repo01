@@ -61,21 +61,15 @@
             color: #52678a;
         }
 
-        /* ============================================================
-           GRID — exactly 3 columns on desktop → 2 rows of 3
-        ============================================================ */
         .acc-features__grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);   /* ✅ 3 equal columns */
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
             max-width: 1200px;
             margin: 0 auto;
             perspective: 1200px;
         }
 
-        /* ============================================================
-           CARD
-        ============================================================ */
         .acc-feature-card {
             position: relative;
             padding: 2rem 1.6rem;
@@ -173,12 +167,33 @@
         }
 
         /* ============================================================
-           RESPONSIVE
-           ✅ 3 → 2 columns (tablet) → 1 column (mobile)
+           SCROLL REVEAL — cards animate IN TOGETHER, no stagger
         ============================================================ */
+        .acc-feature-card.scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition:
+                opacity 0.9s ease-out,
+                transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        .acc-feature-card.scroll-reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (scripting: none) {
+            .acc-feature-card.scroll-reveal {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @media (max-width: 900px) {
             .acc-features__grid {
-                grid-template-columns: repeat(2, 1fr);   /* 2 per row on tablet */
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -187,7 +202,7 @@
                 padding: 3rem 1.2rem;
             }
             .acc-features__grid {
-                grid-template-columns: 1fr;              /* 1 per row on mobile */
+                grid-template-columns: 1fr;
             }
             .acc-feature-card {
                 padding: 1.6rem 1.3rem;
@@ -205,7 +220,6 @@
     {{-- CARDS --}}
     <div class="acc-features__grid">
 
-        {{-- Card 1 --}}
         <div class="acc-feature-card">
             <div class="acc-feature-card__icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -219,7 +233,6 @@
             <p>Create, send, and track invoices in seconds. Get paid faster with smart reminders.</p>
         </div>
 
-        {{-- Card 2 --}}
         <div class="acc-feature-card">
             <div class="acc-feature-card__icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -231,7 +244,6 @@
             <p>Live dashboards and financial statements updated the moment transactions happen.</p>
         </div>
 
-        {{-- Card 3 --}}
         <div class="acc-feature-card">
             <div class="acc-feature-card__icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -244,7 +256,6 @@
             <p>Auto-categorize every transaction and keep your books clean without manual entry.</p>
         </div>
 
-        {{-- Card 4 --}}
         <div class="acc-feature-card">
             <div class="acc-feature-card__icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -256,7 +267,6 @@
             <p>Stay compliant with built-in tax rules, reports, and one-click filings.</p>
         </div>
 
-        {{-- Card 5 --}}
         <div class="acc-feature-card">
             <div class="acc-feature-card__icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -268,7 +278,6 @@
             <p>Real humans, real answers — anytime you need help with your accounting.</p>
         </div>
 
-        {{-- Card 6 --}}
         <div class="acc-feature-card">
             <div class="acc-feature-card__icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -285,32 +294,80 @@
     </div>
 </section>
 
-@push('scripts')
+{{-- ============================================================
+     INLINE SCRIPT — does NOT depend on @stack('scripts')
+     ============================================================ --}}
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const cards = document.querySelectorAll('.acc-feature-card');
+    (function () {
+        function initFeatures() {
+            var cards = document.querySelectorAll('.acc-feature-card');
+            if (!cards.length) return;
 
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
+            if (!('IntersectionObserver' in window)) {
+                return; // cards stay visible by default
+            }
 
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-
-                // Tilt strength — how many degrees max
-                const rotateY = ((x - centerX) / centerX) * 10;  // left/right
-                const rotateX = ((centerY - y) / centerY) * 10;  // up/down
-
-                card.style.transform =
-                    `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px) scale(1.04)`;
+            // Add the hidden state
+            cards.forEach(function (card) {
+                card.classList.add('scroll-reveal');
             });
 
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = '';
+            // -------- Reveal the WHOLE GRID together (no stagger) --------
+            var grid = document.querySelector('.acc-features__grid');
+
+            var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        // Reveal every card at the same moment
+                        cards.forEach(function (card) {
+                            card.classList.add('is-visible');
+                        });
+                        observer.disconnect();
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -60px 0px'
             });
-        });
-    });
+
+            if (grid) {
+                observer.observe(grid);
+            }
+
+            // Safety net
+            setTimeout(function () {
+                cards.forEach(function (card) {
+                    card.classList.add('is-visible');
+                });
+            }, 2500);
+
+            // -------- 3D TILT ON HOVER --------
+            cards.forEach(function (card) {
+                card.addEventListener('mousemove', function (e) {
+                    var rect = card.getBoundingClientRect();
+                    var x = e.clientX - rect.left;
+                    var y = e.clientY - rect.top;
+
+                    var centerX = rect.width / 2;
+                    var centerY = rect.height / 2;
+
+                    var rotateY = ((x - centerX) / centerX) * 10;
+                    var rotateX = ((centerY - y) / centerY) * 10;
+
+                    card.style.transform =
+                        'perspective(900px) rotateX(' + rotateX + 'deg) rotateY(' + rotateY + 'deg) translateZ(10px) scale(1.04)';
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    card.style.transform = '';
+                });
+            });
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initFeatures);
+        } else {
+            initFeatures();
+        }
+    })();
 </script>
-@endpush

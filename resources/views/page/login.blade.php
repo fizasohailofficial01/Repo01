@@ -1,274 +1,411 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coming Soon · Simple Frontend</title>
-  <style>
-    /* Global reset & base */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | Accountant Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    body {
-      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
-      background: linear-gradient(145deg, #0b1120 0%, #1a2639 100%);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-      color: #eef2f6;
-      line-height: 1.5;
-    }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    /* Card container – glassmorphism / soft dark */
-    .coming-soon {
-      max-width: 780px;
-      width: 100%;
-      background: rgba(20, 30, 48, 0.75);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 2.5rem;
-      padding: 4rem 2.5rem;
-      text-align: center;
-      box-shadow: 0 25px 50px -8px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.02) inset;
-      transition: transform 0.2s ease;
-    }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f7f3ee;
+            color: #3e3a39;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+        }
 
-    .coming-soon:hover {
-      transform: scale(1.005);
-    }
+        .login-wrapper {
+            width: 100%;
+            max-width: 420px;
+        }
 
-    /* Icon / badge area */
-    .badge {
-      display: inline-block;
-      background: rgba(110, 195, 255, 0.15);
-      border: 1px solid rgba(110, 195, 255, 0.3);
-      border-radius: 100px;
-      padding: 0.5rem 1.5rem;
-      font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 0.3px;
-      text-transform: uppercase;
-      color: #8ecae6;
-      margin-bottom: 2rem;
-      backdrop-filter: blur(4px);
-    }
+        /* card */
+        .login-card {
+            background: #fefcf9;
+            border-radius: 1.8rem;
+            padding: 2.8rem 2.2rem;
+            box-shadow: 0 15px 35px rgba(140, 110, 90, 0.08);
+            border: 1px solid #e7ddd2;
+        }
 
-    /* Main heading */
-    h1 {
-      font-size: clamp(2.5rem, 10vw, 5rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
-      margin-bottom: 1.25rem;
-      background: linear-gradient(to right, #ffffff, #b0c9e8);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 2px 10px rgba(0, 160, 255, 0.1);
-    }
+        /* brand / header */
+        .login-brand {
+            text-align: center;
+            margin-bottom: 2.2rem;
+        }
 
-    /* Subtext */
-    .subtitle {
-      font-size: clamp(1.05rem, 4vw, 1.4rem);
-      color: #a6b9d0;
-      max-width: 520px;
-      margin: 0 auto 2.75rem auto;
-      font-weight: 400;
-      border-left: 3px solid #2d4b6e;
-      padding-left: 1.2rem;
-      text-align: left;
-      background: linear-gradient(90deg, rgba(110, 195, 255, 0.05), transparent);
-      border-radius: 0 8px 8px 0;
-    }
+        .login-brand .brand-icon {
+            background: #f0e7df;
+            width: 66px;
+            height: 66px;
+            border-radius: 22px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+        }
 
-    /* Simple email / notify form */
-    .notify-form {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      justify-content: center;
-      align-items: center;
-      max-width: 500px;
-      margin: 0 auto 2rem auto;
-    }
+        .login-brand .brand-icon i {
+            font-size: 2rem;
+            color: #9b7b62;
+        }
 
-    .notify-form input {
-      flex: 1 1 240px;
-      padding: 1rem 1.5rem;
-      border-radius: 60px;
-      border: 1px solid #2a3a50;
-      background: #0e1624;
-      color: #ffffff;
-      font-size: 1rem;
-      outline: none;
-      transition: border 0.2s, box-shadow 0.2s;
-      font-family: inherit;
-    }
+        .login-brand h1 {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #5e4b3c;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.4rem;
+        }
 
-    .notify-form input::placeholder {
-      color: #5a6f88;
-      font-weight: 300;
-    }
+        .login-brand p {
+            color: #8a786a;
+            font-size: 0.95rem;
+            font-weight: 350;
+        }
 
-    .notify-form input:focus {
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
-    }
+        /* form groups */
+        .form-group {
+            margin-bottom: 1.4rem;
+        }
 
-    .notify-form button {
-      flex: 0 0 auto;
-      background: #ffffff;
-      color: #0b1120;
-      border: none;
-      border-radius: 60px;
-      padding: 1rem 2rem;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      letter-spacing: 0.3px;
-      box-shadow: 0 8px 18px -6px rgba(0, 150, 255, 0.3);
-      font-family: inherit;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
+        .form-group label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: #6e5b4d;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.01em;
+        }
 
-    .notify-form button:hover {
-      background: #d4e6ff;
-      transform: translateY(-2px);
-      box-shadow: 0 14px 22px -8px #1e3a5f;
-    }
+        .input-wrapper {
+            position: relative;
+        }
 
-    .notify-form button:active {
-      transform: translateY(1px);
-      box-shadow: 0 4px 10px -4px #1e3a5f;
-    }
+        .input-wrapper i {
+            position: absolute;
+            left: 1.1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #b3937b;
+            font-size: 1rem;
+            pointer-events: none;
+        }
 
-    /* Countdown / small detail (not dynamic, just style) */
-    .countdown-note {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      color: #6b8aaa;
-      font-size: 0.95rem;
-      margin-top: 1.8rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      padding-top: 2rem;
-      font-weight: 300;
-      letter-spacing: 0.3px;
-    }
+        .input-wrapper input {
+            width: 100%;
+            padding: 0.85rem 1rem 0.85rem 2.8rem;
+            font-size: 0.95rem;
+            font-family: inherit;
+            color: #4a3f37;
+            background: #fcf9f6;
+            border: 1px solid #e6dcd2;
+            border-radius: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+        }
 
-    .countdown-note span {
-      background: #1b2a3f;
-      padding: 0.2rem 0.9rem;
-      border-radius: 30px;
-      color: #8ecae6;
-      font-weight: 500;
-      font-size: 0.85rem;
-      border: 1px solid #2a3f5a;
-    }
+        .input-wrapper input::placeholder {
+            color: #b3a497;
+            font-weight: 350;
+        }
 
-    /* Social / footer micro */
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 1.8rem;
-      font-size: 0.9rem;
-      color: #4f6885;
-    }
+        .input-wrapper input:focus {
+            border-color: #c9a98d;
+            background: #fffdfa;
+            box-shadow: 0 0 0 4px rgba(200, 170, 145, 0.12);
+        }
 
-    .social-links a {
-      color: #6b8aaa;
-      text-decoration: none;
-      transition: color 0.2s, transform 0.2s;
-      display: inline-block;
-      font-weight: 400;
-      border-bottom: 1px dotted transparent;
-      padding-bottom: 2px;
-    }
+        /* remember & forgot row */
+        .form-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.8rem;
+            font-size: 0.88rem;
+        }
 
-    .social-links a:hover {
-      color: #b3d4ff;
-      border-bottom-color: #b3d4ff;
-      transform: translateY(-1px);
-    }
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #7d6c5f;
+            cursor: pointer;
+            font-weight: 400;
+        }
 
-    /* Responsive adjustments */
-    @media (max-width: 550px) {
-      .coming-soon {
-        padding: 2.5rem 1.5rem;
-        border-radius: 2rem;
-      }
+        .remember input {
+            accent-color: #b28b6e;
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+        }
 
-      .subtitle {
-        text-align: center;
-        border-left: none;
-        padding-left: 0;
-        background: none;
-      }
+        .forgot-link {
+            color: #9b7b62;
+            text-decoration: none;
+            font-weight: 450;
+            transition: color 0.2s;
+        }
 
-      .notify-form button {
-        width: 100%;
-        padding: 1rem;
-      }
+        .forgot-link:hover {
+            color: #7a5c44;
+            text-decoration: underline;
+        }
 
-      .countdown-note {
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-    }
+        /* button */
+        .btn-login {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            font-size: 1rem;
+            font-family: inherit;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            color: #fefcf9;
+            background: #a8866d;
+            border: none;
+            border-radius: 0.9rem;
+            cursor: pointer;
+            transition: background 0.25s, transform 0.15s, box-shadow 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
 
-    /* Small decorative glow */
-    .glow {
-      position: fixed;
-      width: 60vmax;
-      height: 60vmax;
-      background: radial-gradient(circle, rgba(30, 100, 200, 0.15) 0%, transparent 70%);
-      border-radius: 50%;
-      top: -20vmax;
-      right: -20vmax;
-      pointer-events: none;
-      z-index: -1;
-      filter: blur(40px);
-    }
-  </style>
+        .btn-login:hover {
+            background: #977457;
+            box-shadow: 0 8px 18px rgba(150, 115, 90, 0.22);
+        }
+
+        .btn-login:active {
+            transform: scale(0.98);
+        }
+
+        /* divider */
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin: 1.8rem 0 1.4rem;
+            color: #b3a294;
+            font-size: 0.8rem;
+            font-weight: 400;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: #ebe2d9;
+        }
+
+        /* social buttons */
+        .social-row {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .social-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            font-family: inherit;
+            font-size: 0.88rem;
+            font-weight: 450;
+            color: #6e5b4d;
+            background: #fcf9f6;
+            border: 1px solid #e6dcd2;
+            border-radius: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .social-btn:hover {
+            background: #f6f0e9;
+            border-color: #d8c8b9;
+        }
+
+        .social-btn i {
+            font-size: 1rem;
+            color: #a8866d;
+        }
+
+        /* footer */
+        .login-footer {
+            text-align: center;
+            margin-top: 1.8rem;
+            font-size: 0.9rem;
+            color: #8a786a;
+            font-weight: 350;
+        }
+
+        .login-footer a {
+            color: #9b7b62;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .login-footer a:hover {
+            color: #7a5c44;
+            text-decoration: underline;
+        }
+
+        /* error alert (for Laravel validation) */
+        .alert-error {
+            background: #fdeeea;
+            color: #a54a3a;
+            border: 1px solid #f2d5cd;
+            padding: 0.75rem 1rem;
+            border-radius: 0.8rem;
+            font-size: 0.85rem;
+            margin-bottom: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .alert-error i {
+            color: #c06b58;
+        }
+
+        /* responsive */
+        @media (max-width: 480px) {
+            body {
+                padding: 1.2rem 1rem;
+            }
+            .login-card {
+                padding: 2.2rem 1.6rem;
+                border-radius: 1.5rem;
+            }
+            .login-brand h1 {
+                font-size: 1.55rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- subtle background glow -->
-  <div class="glow"></div>
 
-  <main class="coming-soon">
-    <div class="badge">🚧 Under construction</div>
-    
-    <h1>login</h1>
-    
-    <p class="subtitle">
-Login page
-    </p>
+    <div class="login-wrapper">
+        <div class="login-card">
+            <!-- Brand header -->
+            <div class="login-brand">
+                <div class="brand-icon">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <h1>ApexBooks</h1>
+                <p>Sign in to your accountant portal</p>
+            </div>
 
-    <!-- Simple email capture (no action, just frontend demo) -->
-    <form class="notify-form" onsubmit="event.preventDefault(); alert('Thanks! This is a demo — no email stored.');">
-      <input type="email" placeholder="your@email.com" aria-label="Email address" required>
-      <button type="submit">Notify me</button>
-    </form>
+            {{-- Laravel: display validation errors --}}
+            @if ($errors->any())
+                <div class="alert-error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span>{{ $errors->first() }}</span>
+                </div>
+            @endif
 
-    <div class="countdown-note">
-      <span>⏳</span> Launching soon — stay tuned
+            {{-- Laravel login form --}}
+            <form method="POST" action="{{ route('login') }}" id="loginForm">
+                @csrf
+
+                <!-- Email -->
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope"></i>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            value="{{ old('email') }}" 
+                            placeholder="you@example.com" 
+                            required 
+                            autofocus
+                        >
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock"></i>
+                        <input 
+                            type="password" 
+                            id="password" 
+                            name="password" 
+                            placeholder="Enter your password" 
+                            required
+                        >
+                    </div>
+                </div>
+
+                <!-- Remember & Forgot -->
+                <div class="form-options">
+                    <label class="remember">
+                        <input type="checkbox" name="remember" id="remember">
+                        <span>Remember me</span>
+                    </label>
+                    <a href="#" class="forgot-link">Forgot password?</a>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="btn-login" id="submitBtn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Sign in
+                </button>
+            </form>
+
+            <!-- Divider -->
+            <div class="divider">or continue with</div>
+
+            <!-- Social (placeholder) -->
+            <div class="social-row">
+                <button type="button" class="social-btn">
+                    <i class="fab fa-google"></i> Google
+                </button>
+                <button type="button" class="social-btn">
+                    <i class="fab fa-microsoft"></i> Microsoft
+                </button>
+            </div>
+
+            <!-- Footer -->
+            <div class="login-footer">
+                Don't have an account? <a href="#">Create one</a>
+            </div>
+        </div>
     </div>
 
-    <!-- minimal social / extra links -->
-    <div class="social-links">
-      <a href="#" aria-label="Twitter">Twitter</a>
-      <a href="#" aria-label="GitHub">GitHub</a>
-      <a href="#" aria-label="Updates">Updates</a>
-    </div>
-  </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('loginForm');
+            const submitBtn = document.getElementById('submitBtn');
+
+            if (form && submitBtn) {
+                form.addEventListener('submit', function () {
+                    // Prevent double submission and show loading state
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing in...';
+                });
+            }
+        });
+    </script>
+
 </body>
 </html>
